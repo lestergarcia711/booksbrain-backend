@@ -44,7 +44,7 @@ export default class CategoryRepository {
             'UPDATE categories SET  category_name = ? WHERE category_id = ?',
             [name, id]
         );
-        return result.insertId;
+        return result.affectedRows;
     }
 
     async delete(id){
@@ -52,7 +52,7 @@ export default class CategoryRepository {
             'DELETE FROM categories WHERE  category_id = ?',
         [id]
         );
-        return result.insertId;
+        return result.affectedRows;
     }
     
 

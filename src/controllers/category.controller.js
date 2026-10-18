@@ -31,7 +31,7 @@ import { matchedData } from "express-validator";
     
     update = async (req, res) => {
         const { id } = matchedData(req, {locations: ['params']});
-        const dto = new CategoryUpdateDto(matchedData(req, { location: ['body']}));
+        const dto = new CategoryUpdateDto(matchedData(req, { locations: ['body']}));
         const data = await this.#categoryService.update(id, dto);
         res.status(200).json({ status: 'success', data});
     };
