@@ -11,6 +11,12 @@ import RoleRepository from './repositories/role.repository.js';
 import RoleService from './services/role.service.js';
 import RoleController from './controllers/role.controller.js';
 
+import UserRepository from './repositories/user.repository.js';
+import UserService from './services/user.service.js';
+import UserController from './controllers/user.controller.js';
+import PasswordHasher from './utils/password.hasher.js';
+import { env } from './config/env.config.js';
+
 
 const categoryRepository = new CategoryRepository(pool);
 const categoryService = new CategoryService(categoryRepository);
@@ -22,7 +28,13 @@ const authorService = new AuthorService(authorRepository);
 const roleRepository = new RoleRepository(pool);
 const roleService = new RoleService(roleRepository);
 
+const userRepository = new UserRepository(pool);
+const passwordHasher = new PasswordHasher(env.security.saltRounds);
+const userService = new UserService(userRepository, roleRepository, passwordHasher);
+
+
 
 export const categoryController = new CategoryController(categoryService);
 export const authorController = new AuthorController(authorService);
 export const roleController = new RoleController(roleService);
+export const userController = new UserController(userService);

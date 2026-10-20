@@ -8,7 +8,7 @@ const start = async()=>{
         console.log('Conexion a MySQL establecida');
 
         const server = app.listen(env.port, ()=>{
-            console.log(`Servidor corriendo en https://localhost:${env.port}`);
+            console.log(`Servidor corriendo en http://localhost:${env.port}`);
 
         });
 
