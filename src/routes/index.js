@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { ROLES } from '../constants/roles.constants.js';
+import DocsRouter from './docs.routes.js';
 import AuthRouter from './auth.routes.js';
 import CatalogRouter from './catalog.routes.js';
 import CategoryRouter from './category.routes.js';
@@ -43,6 +44,9 @@ export default class ApiRouter {
       purchaseController,
       meController,
     } = this.#dependencies;
+
+    // Documentación interactiva Swagger UI (/api/v1/docs) y especificación JSON (/api/v1/docs/json).
+    this.#router.use('/docs', new DocsRouter().router);
 
     // Rutas públicas y de autenticación.
     this.#router.use(

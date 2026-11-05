@@ -163,6 +163,16 @@ describe('Suite Integral de Pruebas (Fases 1 a 6) - Library System API', () => {
   });
 
   describe('Fase 1: Seguridad Base, CSRF, Autenticación y POST /users', () => {
+    it('expone la documentación Swagger OpenAPI 3.0 en GET /docs/json y GET /docs/', async () => {
+      const jsonRes = await anonymousHttp.request('GET', '/docs/json');
+      assert.equal(jsonRes.status, 200);
+      assert.equal(jsonRes.body.openapi, '3.0.3');
+      assert.ok(jsonRes.body.paths['/loans']);
+
+      const htmlRes = await anonymousHttp.request('GET', '/docs/');
+      assert.equal(htmlRes.status, 200);
+    });
+
     it('bloquea con 403 peticiones POST sin cabecera Origin válida (protección CSRF)', async () => {
       const res = await anonymousHttp.request('POST', '/auth/login', {
         body: { email: 'nobody@library.local', password: 'Password123' },
