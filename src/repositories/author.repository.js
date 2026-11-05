@@ -55,5 +55,12 @@ export default class AuthorRepository {
         return result.affectedRows;
     }
     
+    async findByIds(ids){
+        const [rows]= await this.#pool.query(
+            'SELECT author_id, full_name FROM  authors WHERE author_id IN (?)',
+            [ids]
+        );
+        return rows;
+    }
 
 }

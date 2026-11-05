@@ -17,6 +17,10 @@ import UserController from './controllers/user.controller.js';
 import PasswordHasher from './utils/password.hasher.js';
 import { env } from './config/env.config.js';
 
+import BookRepository from './repositories/book.repository.js';
+import BookService from './services/book.service.js';
+import BookController from './controllers/book.controller.js';
+
 
 const categoryRepository = new CategoryRepository(pool);
 const categoryService = new CategoryService(categoryRepository);
@@ -33,8 +37,14 @@ const passwordHasher = new PasswordHasher(env.security.saltRounds);
 const userService = new UserService(userRepository, roleRepository, passwordHasher);
 
 
+const bookRepository = new BookRepository(pool);
+const bookService = new BookService(bookRepository, categoryRepository, authorRepository);
+
+
+
 
 export const categoryController = new CategoryController(categoryService);
 export const authorController = new AuthorController(authorService);
 export const roleController = new RoleController(roleService);
 export const userController = new UserController(userService);
+export const bookController = new BookController(bookService);

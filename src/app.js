@@ -3,7 +3,8 @@ import {
    categoryController, 
    authorController,
    roleController ,
-   userController
+   userController,
+   bookController
 
 } from './container.js';
 import createApiRouter from './routes/index.js';
@@ -18,7 +19,7 @@ app.get('/api/v1/health', (req, res) => {
    res.json({ status: 'success', message: 'API funcionando' });
 });
 
-app.use('/api/v1', createApiRouter({ categoryController, authorController, roleController , userController}));
+app.use('/api/v1', createApiRouter({ categoryController, authorController, roleController , userController, bookController}));
 
 app.use(notFoundHandler);
 app.use(errorHandler);
