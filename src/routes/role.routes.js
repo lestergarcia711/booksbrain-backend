@@ -1,9 +1,21 @@
 import { Router } from 'express';
 
-export default function createRoleRouter(roleController) {
-    const router = Router();
+// Encapsula el enrutador de roles mediante programación orientada a objetos.
+export default class RoleRouter {
+  #router;
+  #roleController;
 
-    router.get('/', roleController.getAll);
+  constructor(roleController) {
+    this.#router = Router();
+    this.#roleController = roleController;
+    this.#initializeRoutes();
+  }
 
-    return router;
+  get router() {
+    return this.#router;
+  }
+
+  #initializeRoutes() {
+    this.#router.get('/', this.#roleController.getAll);
+  }
 }

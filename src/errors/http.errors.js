@@ -16,14 +16,36 @@ export class NotFoundError extends AppError{
 }
 
 
-export class BadRequestError extends AppError{
-    constructor(details){
-        super('Datos de entrada invalidos', 400, details);
+export class BadRequestError extends AppError {
+    constructor(details) {
+        if (typeof details === 'string') {
+            super(details, 400);
+        } else {
+            super('Datos de entrada invalidos', 400, details);
+        }
     }
 }
 
-export class ConflictError extends AppError{
-    constructor(message = 'El recurso ya existe'){
+export class UnauthorizedError extends AppError {
+    constructor(message = 'No autenticado') {
+        super(message, 401);
+    }
+}
+
+export class ForbiddenError extends AppError {
+    constructor(message = 'No tienes permisos para realizar esta accion') {
+        super(message, 403);
+    }
+}
+
+export class ConflictError extends AppError {
+    constructor(message = 'El recurso ya existe') {
         super(message, 409);
+    }
+}
+
+export class TooManyRequestsError extends AppError {
+    constructor(message = 'Demasiadas peticiones, intenta mas tarde') {
+        super(message, 429);
     }
 }

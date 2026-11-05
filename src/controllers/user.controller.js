@@ -24,6 +24,7 @@ export default class UserController {
   create = async (req, res) => {
     const dto = new UserCreateDto(matchedData(req, { locations: ['body'] }));
     const data = await this.#userService.create(dto);
+    res.set('Cache-Control', 'no-store');
     res.status(201).json({ status: 'success', data });
   };
 

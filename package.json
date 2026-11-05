@@ -21,14 +21,24 @@
   "type": "module",
   "main": "src/server.js",
   "scripts": {
-    "dev": "nodemon library-system --quiet ",
-    "start": "node src/server.js"
+    "dev": "nodemon src/server.js --quiet",
+    "start": "node src/server.js",
+    "seed:admin": "node src/scripts/admin.seeder.js",
+    "test": "node --test"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
     "express": "^5.3.0",
+    "express-rate-limit": "^8.7.3",
     "express-validator": "^7.3.2",
-    "mysql2": "^3.24.6"
+    "helmet": "^8.3.0",
+    "jsonwebtoken": "^9.0.3",
+    "mysql2": "^3.24.6",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "dotenv": "^18.0.8",

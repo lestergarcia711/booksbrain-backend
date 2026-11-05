@@ -7,14 +7,26 @@ import {
   userIdRules,
 } from '../validators/user.validator.js';
 
-export default function createUserRouter(userController) {
-  const router = Router();
+// Encapsula el enrutador administrativo de usuarios mediante programación orientada a objetos.
+export default class UserRouter {
+  #router;
+  #userController;
 
-  router.get('/', paginationRules, validateRequest, userController.getAll);
-  router.get('/:id', userIdRules, validateRequest, userController.getById);
-  router.post('/', createUserRules, validateRequest, userController.create);
-  router.patch('/:id', updateUserRules, validateRequest, userController.update);
-  router.delete('/:id', userIdRules, validateRequest, userController.delete);
+  constructor(userController) {
+    this.#router = Router();
+    this.#userController = userController;
+    this.#initializeRoutes();
+  }
 
-  return router;
+  get router() {
+    return this.#router;
+  }
+
+  #initializeRoutes() {
+    this.#router.get('/', paginationRules, validateRequest, this.#userController.getAll);
+    this.#router.get('/:id', userIdRules, validateRequest, this.#userController.getById);
+    this.#router.post('/', createUserRules, validateRequest, this.#userController.create);
+    this.#router.patch('/:id', updateUserRules, validateRequest, this.#userController.update);
+    this.#router.delete('/:id', userIdRules, validateRequest, this.#userController.delete);
+  }
 }
