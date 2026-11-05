@@ -55,7 +55,11 @@ Digitaliza y controla la operación presencial de una **librería física** evit
 
 ---
 
-## 5. Entrypoints (URL Base: `/api/v1`)
+## 5. Entrypoints (URL Base: `http://localhost:3000/api/v1`)
+
+- **Entrypoint principal de la aplicación:** `src/server.js`
+- **Swagger UI (Documentación interactiva):** `http://localhost:3000/api/v1/docs`
+- **Especificación OpenAPI JSON:** `http://localhost:3000/api/v1/docs/json`
 
 ### Documentación y Salud
 | Método | Endpoint | Acceso | Descripción |

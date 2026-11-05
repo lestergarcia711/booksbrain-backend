@@ -23,6 +23,7 @@ export default class Server {
 
       this.#httpServer = this.#app.listen(this.#port, () => {
         console.log(`Servidor corriendo en http://localhost:${this.#port}`);
+        console.log(`Documentacion Swagger en http://localhost:${this.#port}/api/v1/docs`);
       });
 
       process.on('SIGINT', this.shutdown);
