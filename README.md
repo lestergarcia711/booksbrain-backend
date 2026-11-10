@@ -102,3 +102,9 @@ Digitaliza y controla la operación presencial de una **librería física** evit
 | `GET, POST` | `/api/v1/loans` | Lista préstamos y registra salidas (acepta `clientId` XOR `client` nuevo inline) |
 | `POST, PATCH` | `/api/v1/loans/:id/return` | Registra devolución de ejemplares (`returns: [{ copyId, checkinCondition }]`) |
 | `GET, POST` | `/api/v1/purchases` | Lista y registra ventas presenciales (`items: [{ bookId, quantity }]`) |
+
+
+## Link del frontend para la API.
+
+ https://lestergarcia711.github.io/booksbrain-frontend/
+
